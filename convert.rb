@@ -45,8 +45,8 @@ def convert_to_binary(instruction, opcode_dict)
     binary_string = "#{opcode_dict[opcode]}#{offset}"
   elsif opcode == "JR"
     rs = map_string_to_register(split_string[1])
-    rt = 0
-    rd = 0
+    rt = "00000"
+    rd = "00000"
     binary_string = "#{opcode_dict[opcode]}#{rs}#{rt}#{rd}00000000000"
   end
   return binary_string
