@@ -37,3 +37,32 @@ post '/bullshit' do
     :filename => "imem_test0.txt",
     :stream => false
 end
+
+post '/convert' do
+  lines_with_empty_lines = params[:editor].split("\n")
+  lines = lines_with_empty_lines.reject { |c| c.empty? }
+  opcode_dict = {}
+  opcode_dict["ADD"]  = params[:add]
+  opcode_dict["SUB"]  = params[:sub]
+  opcode_dict["AND"]  = params[:and]
+  opcode_dict["XOR"]  = params[:xor]
+  opcode_dict["COM"]  = params[:com]
+  opcode_dict["MUL"]  = params[:mul]
+  opcode_dict["ADDI"] = params[:addi]
+  opcode_dict["LW"]   = params[:lw]
+  opcode_dict["SW"]   = params[:sw]
+  opcode_dict["BEQ"]  = params[:beq]
+  opcode_dict["JR"]   = params[:jr]
+  opcode_dict["JMP"]  = params[:jmp]
+  opcode_dict["JAL"]  = params[:jal]
+
+  out = Tempfile.new("tempfile")
+  lines.each do |instruction|
+    out << convert_to_binary(instruction, opcode_dict).to_hex.rjust(8, "0").upcase << " // #{instruction.gsub(/\/\/.*/, "")}"
+  end
+  out.close
+  send_file out.path, :type => 'application/zip',
+    :disposition => 'attachment',
+    :filename => "imem_test0.txt",
+    :stream => false
+end
