@@ -60,7 +60,7 @@ post '/convert' do
   lines.each_with_index do |instruction, index|
     instruction_number = "#{index}".rjust(8, "0")
     instruction_number = "#{instruction_number} "
-    out << instruction_number << convert_to_binary(instruction, opcode_dict).to_hex.rjust(8, "0").upcase << " // #{instruction.gsub(/\/\/.*/, "")}"
+    out << instruction_number << convert_to_binary(instruction, opcode_dict).to_hex.rjust(8, "0").upcase << " // #{instruction.gsub(/\/\/.*/, "")} \r\n"
   end
   out.close
   send_file out.path, :type => 'application/zip',
