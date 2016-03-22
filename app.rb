@@ -58,7 +58,8 @@ post '/convert' do
 
   out = Tempfile.new("tempfile")
   lines.each_with_index do |instruction, index|
-    instruction_number = "#{index}".rjust(8, "0")
+    index_in_hex = "#{index}".to_b.to_hex.upcase
+    instruction_number = "#{index_in_hex}".rjust(8, "0")
     instruction_number = "#{instruction_number} "
     out << instruction_number << convert_to_binary(instruction, opcode_dict).to_hex.rjust(8, "0").upcase << " // #{instruction.gsub(/\/\/.*/, "")} \r\n"
   end
