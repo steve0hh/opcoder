@@ -107,4 +107,32 @@ var editor = CodeMirror.fromTextArea(textArea, {
 });
   </script>
 
+
+  <div class="page-header">
+    <h1>How to use</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      The syntax is as follows:
+      <br />
+      <code>
+        ADDI $2, $0, 0 // ADD<br />
+        LW $3, 0($2)   // LW<br />
+        ADD $0, $0, $0 // ADD<br />
+        JMP 4          // JMP<br />
+        SW $1, 0($8)   // SW<br />
+        ...<br />
+        ...<br />
+        ...<br />
+      </code>
+
+      <p>Do check out lecture slides for the syntax of instructions.. :)</p>
+      <p>My group has been using this and found no problems with it when the correct syntax is used..</p>
+
+      <p>You can set your browser to choose the location to save the `imem` textfile and replace it everytime you convert too..</p>
+    </div>
+    <div class="col-md-6">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/iFKyWuGoDuU" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 </div>

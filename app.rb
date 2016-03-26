@@ -61,7 +61,7 @@ post '/convert' do
     index_in_hex = "#{index}".to_b.to_hex.upcase
     instruction_number = "#{index_in_hex}".rjust(8, "0")
     instruction_number = "#{instruction_number} "
-    out << instruction_number << convert_to_binary(instruction, opcode_dict).to_hex.rjust(8, "0").upcase << " // #{instruction.gsub(/\/\/.*/, "")} \r\n"
+    out << instruction_number << convert_to_binary(instruction, opcode_dict).to_hex.rjust(8, "0").upcase << " // #{instruction.gsub(/\/\/.*/, "")}\r\n"
   end
   out.close
   send_file out.path, :type => 'application/zip',
